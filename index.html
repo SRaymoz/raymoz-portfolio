@@ -1,0 +1,3917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Steven Ramos — UX/Product Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   CSS CUSTOM PROPERTIES
+   ============================================ */
+:root {
+  --bg: #0c0c0e;
+  --bg-2: #111114;
+  --bg-3: #161619;
+  --bg-4: #1c1c21;
+  --surface: #1f1f24;
+  --surface-2: #252529;
+  --border: rgba(255,255,255,0.07);
+  --border-2: rgba(255,255,255,0.12);
+  --text-primary: #f0ede8;
+  --text-secondary: #9b9896;
+  --text-tertiary: #5e5c5a;
+  --accent: #c8a96e;
+  --accent-dim: rgba(200, 169, 110, 0.15);
+  --accent-glow: rgba(200, 169, 110, 0.08);
+  --red-accent: #d4614a;
+  --blue-accent: #4a7fd4;
+  
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+
+  --radius-sm: 4px;
+  --radius: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  --nav-height: 64px;
+  --max-width: 1200px;
+  --max-width-narrow: 800px;
+
+  --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+.t-display {
+  font-family: var(--font-display);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.t-headline {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+.t-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.t-body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.75;
+}
+
+/* ============================================
+   LAYOUT
+   ============================================ */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.container--narrow {
+  max-width: var(--max-width-narrow);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  transition: background var(--transition), border-color var(--transition);
+  border-bottom: 1px solid transparent;
+}
+
+.nav.scrolled {
+  background: rgba(12, 12, 14, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom-color: var(--border);
+}
+
+.nav__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav__logo {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--text-primary);
+  font-weight: 400;
+}
+
+.nav__logo span {
+  color: var(--accent);
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-7);
+  list-style: none;
+}
+
+.nav__links a {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  transition: color var(--transition);
+  letter-spacing: 0.01em;
+}
+
+.nav__links a:hover {
+  color: var(--text-primary);
+}
+
+.nav__cta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.nav__hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: var(--space-2);
+}
+
+.nav__hamburger span {
+  display: block;
+  width: 22px;
+  height: 1px;
+  background: var(--text-primary);
+  transition: var(--transition);
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 11px 22px;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: all var(--transition);
+  border: none;
+  outline: none;
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.btn--primary:hover {
+  background: #d4b87a;
+  transform: translateY(-1px);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-2);
+}
+
+.btn--outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  padding: 8px 0;
+}
+
+.btn--ghost:hover {
+  color: var(--text-primary);
+}
+
+.btn--sm {
+  padding: 8px 16px;
+  font-size: 12px;
+}
+
+/* Arrow icon for buttons */
+.btn-arrow {
+  width: 14px;
+  height: 14px;
+  transition: transform var(--transition);
+}
+
+.btn:hover .btn-arrow {
+  transform: translateX(3px);
+}
+
+/* ============================================
+   PAGES / SECTIONS
+   ============================================ */
+.page {
+  display: none;
+  min-height: 100vh;
+  padding-top: var(--nav-height);
+}
+
+.page.active {
+  display: block;
+}
+
+/* ============================================
+   HOME — HERO
+   ============================================ */
+.hero {
+  min-height: calc(100vh - var(--nav-height));
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: var(--space-10) 0 var(--space-9);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(200,169,110,0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--border);
+}
+
+.hero__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-9);
+  align-items: center;
+}
+
+.hero__label {
+  margin-bottom: var(--space-5);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.hero__label::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.hero__title {
+  font-size: clamp(52px, 7vw, 88px);
+  margin-bottom: var(--space-5);
+}
+
+.hero__title em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero__subtitle {
+  font-size: 18px;
+  color: var(--text-secondary);
+  font-weight: 300;
+  max-width: 480px;
+  margin-bottom: var(--space-7);
+  line-height: 1.6;
+}
+
+.hero__actions {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.hero__visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero__badge-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+  width: 100%;
+  max-width: 440px;
+}
+
+.hero__badge {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  transition: all var(--transition);
+}
+
+.hero__badge:hover {
+  border-color: var(--border-2);
+  background: var(--surface-2);
+  transform: translateY(-2px);
+}
+
+.hero__badge-num {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 300;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: var(--space-2);
+}
+
+.hero__badge-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+.hero__badge--wide {
+  grid-column: span 2;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.hero__badge--wide .hero__badge-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--accent-dim);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.hero__scroll {
+  position: absolute;
+  bottom: var(--space-7);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-tertiary);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
+.hero__scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--text-tertiary), transparent);
+  animation: scrollLine 2s ease-in-out infinite;
+}
+
+@keyframes scrollLine {
+  0%, 100% { opacity: 0.4; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(0.5); }
+}
+
+/* ============================================
+   HOME — WORK SECTION
+   ============================================ */
+.section {
+  padding: var(--space-10) 0;
+}
+
+.section--alt {
+  background: var(--bg-2);
+}
+
+.section__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: var(--space-8);
+}
+
+.section__title {
+  font-size: clamp(32px, 4vw, 48px);
+}
+
+.section__divider {
+  height: 1px;
+  background: var(--border);
+  margin-bottom: var(--space-8);
+}
+
+/* ============================================
+   PROJECT CARDS
+   ============================================ */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+}
+
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card:hover {
+  border-color: var(--border-2);
+  transform: translateY(-4px);
+  box-shadow: 0 32px 64px rgba(0,0,0,0.4);
+}
+
+.project-card__visual {
+  aspect-ratio: 16/9;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* The Haunting card visual */
+.project-card--haunting .project-card__visual {
+  background: linear-gradient(135deg, #0d0d14 0%, #1a0a0a 40%, #2d1010 70%, #0d0d14 100%);
+}
+
+.project-card--haunting .project-card__visual-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Atmospheric visual for Haunting */
+.haunting-visual {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.haunting-visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 40%, rgba(212,97,74,0.15) 0%, transparent 60%);
+}
+
+.haunting-ui-mockup {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 32px;
+}
+
+.haunting-bar {
+  width: 100%;
+  height: 2px;
+  background: rgba(212,97,74,0.3);
+  border-radius: 1px;
+}
+
+.haunting-bar--accent {
+  width: 60%;
+  background: rgba(212,97,74,0.7);
+  box-shadow: 0 0 12px rgba(212,97,74,0.4);
+}
+
+.haunting-tile-row {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.haunting-tile {
+  flex: 1;
+  aspect-ratio: 1;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(212,97,74,0.2);
+}
+
+.haunting-tile--active {
+  background: rgba(212,97,74,0.12);
+  border-color: rgba(212,97,74,0.5);
+}
+
+.haunting-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: rgba(212,97,74,0.6);
+  text-transform: uppercase;
+}
+
+/* Mission Ready visual */
+.project-card--mission .project-card__visual {
+  background: linear-gradient(135deg, #090e14 0%, #0d1a24 40%, #0f2235 70%, #090e14 100%);
+}
+
+.mission-visual {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.mission-visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 40%, rgba(74,127,212,0.12) 0%, transparent 60%);
+}
+
+.mission-phone {
+  position: relative;
+  width: 80px;
+  height: 140px;
+  border-radius: 12px;
+  background: var(--bg-4);
+  border: 1px solid rgba(74,127,212,0.3);
+  overflow: hidden;
+  z-index: 1;
+  margin: 0 8px;
+}
+
+.mission-phone-screen {
+  width: 100%;
+  height: 100%;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mission-score-display {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--blue-accent);
+  text-align: center;
+  line-height: 1;
+  padding: 8px 0 4px;
+}
+
+.mission-score-label {
+  font-size: 6px;
+  color: var(--text-tertiary);
+  text-align: center;
+  letter-spacing: 0.1em;
+}
+
+.mission-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-top: 4px;
+}
+
+.mission-bar-fill {
+  height: 3px;
+  border-radius: 2px;
+  background: var(--blue-accent);
+  opacity: 0.7;
+}
+
+.mission-small-stat {
+  background: rgba(74,127,212,0.1);
+  border-radius: 3px;
+  padding: 4px;
+  font-size: 5px;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-top: 2px;
+}
+
+.mission-phone--secondary {
+  width: 64px;
+  height: 110px;
+  opacity: 0.6;
+  transform: scale(0.9) rotate(-8deg);
+}
+
+.mission-phone--tertiary {
+  width: 64px;
+  height: 110px;
+  opacity: 0.5;
+  transform: scale(0.85) rotate(6deg);
+}
+
+/* Overlay on card hover */
+.project-card__visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0);
+  transition: background var(--transition);
+}
+
+.project-card:hover .project-card__visual::after {
+  background: rgba(0,0,0,0.1);
+}
+
+.project-card__content {
+  padding: var(--space-6);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card__tags {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-4);
+}
+
+.project-card__tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--text-tertiary);
+  background: var(--bg-4);
+  border: 1px solid var(--border);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+}
+
+.project-card__title {
+  font-size: 24px;
+  margin-bottom: var(--space-3);
+  font-family: var(--font-display);
+  font-weight: 400;
+}
+
+.project-card__desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: var(--space-5);
+  flex: 1;
+  font-weight: 300;
+}
+
+.project-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border);
+}
+
+.project-card__stat {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent);
+}
+
+.project-card__link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: color var(--transition);
+}
+
+.project-card:hover .project-card__link {
+  color: var(--accent);
+}
+
+.link-arrow {
+  transition: transform var(--transition);
+}
+
+.project-card:hover .link-arrow {
+  transform: translate(2px, -2px);
+}
+
+/* ============================================
+   HOME — ABOUT PREVIEW
+   ============================================ */
+.about-preview {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-9);
+  align-items: center;
+}
+
+.about-preview__label {
+  margin-bottom: var(--space-5);
+}
+
+.about-preview__title {
+  font-size: clamp(32px, 4vw, 52px);
+  margin-bottom: var(--space-5);
+}
+
+.about-preview__body {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: var(--space-6);
+  font-weight: 300;
+}
+
+.about-preview__visual {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-7);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.about-stat {
+  padding: var(--space-4);
+  background: var(--bg-4);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+.about-stat__num {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 300;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: var(--space-2);
+}
+
+.about-stat__label {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  line-height: 1.4;
+}
+
+/* ============================================
+   HOME — RESUME CTA
+   ============================================ */
+.resume-cta {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8) var(--space-9);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+}
+
+.resume-cta__text h3 {
+  font-size: 28px;
+  margin-bottom: var(--space-3);
+  font-family: var(--font-display);
+  font-weight: 400;
+}
+
+.resume-cta__text p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 300;
+}
+
+/* ============================================
+   HOME — CONTACT CTA
+   ============================================ */
+.contact-section {
+  text-align: center;
+  padding: var(--space-10) 0;
+}
+
+.contact-section__title {
+  font-size: clamp(40px, 6vw, 72px);
+  margin-bottom: var(--space-5);
+}
+
+.contact-section__subtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
+  font-weight: 300;
+  max-width: 480px;
+  margin: 0 auto var(--space-7);
+  line-height: 1.7;
+}
+
+.contact-section__actions {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.contact-email {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  margin-top: var(--space-6);
+  display: block;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+  background: var(--bg-2);
+  border-top: 1px solid var(--border);
+  padding: var(--space-8) 0 var(--space-6);
+}
+
+.footer__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: var(--space-6);
+  align-items: center;
+  margin-bottom: var(--space-6);
+}
+
+.footer__brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.footer__name {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  font-weight: 400;
+}
+
+.footer__title-text {
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+.footer__nav {
+  display: flex;
+  gap: var(--space-6);
+  list-style: none;
+}
+
+.footer__nav a {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  transition: color var(--transition);
+}
+
+.footer__nav a:hover {
+  color: var(--text-primary);
+}
+
+.footer__links {
+  display: flex;
+  gap: var(--space-4);
+  justify-content: flex-end;
+}
+
+.footer__link {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  transition: color var(--transition);
+}
+
+.footer__link:hover {
+  color: var(--accent);
+}
+
+.footer__bottom {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--space-4) var(--space-6) 0;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer__copy {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  font-family: var(--font-mono);
+}
+
+/* ============================================
+   CASE STUDY — SHARED STYLES
+   ============================================ */
+.cs-hero {
+  min-height: 60vh;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: var(--space-10);
+  position: relative;
+  overflow: hidden;
+}
+
+.cs-hero__bg {
+  position: absolute;
+  inset: 0;
+}
+
+.cs-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 0%, rgba(12,12,14,0.6) 60%, var(--bg) 100%);
+}
+
+.cs-hero__content {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+  width: 100%;
+}
+
+.cs-hero__back {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  transition: color var(--transition);
+  margin-bottom: var(--space-8);
+}
+
+.cs-hero__back:hover {
+  color: var(--text-primary);
+}
+
+.cs-hero__label {
+  margin-bottom: var(--space-4);
+}
+
+.cs-hero__title {
+  font-size: clamp(48px, 7vw, 96px);
+  margin-bottom: var(--space-5);
+}
+
+.cs-hero__desc {
+  font-size: 18px;
+  color: var(--text-secondary);
+  font-weight: 300;
+  max-width: 600px;
+  line-height: 1.65;
+  margin-bottom: var(--space-7);
+}
+
+.cs-meta {
+  display: flex;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+}
+
+.cs-meta__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.cs-meta__label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.cs-meta__value {
+  font-size: 14px;
+  color: var(--text-primary);
+  font-weight: 300;
+}
+
+/* Case study body content */
+.cs-body {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.cs-section {
+  padding: var(--space-9) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.cs-section:last-child {
+  border-bottom: none;
+}
+
+.cs-section__header {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: var(--space-9);
+  margin-bottom: var(--space-7);
+}
+
+.cs-section__label {
+  padding-top: var(--space-1);
+}
+
+.cs-section__content {}
+
+.cs-h2 {
+  font-size: clamp(28px, 3.5vw, 40px);
+  margin-bottom: var(--space-5);
+}
+
+.cs-h3 {
+  font-size: 20px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  margin-bottom: var(--space-3);
+}
+
+.cs-p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: var(--space-4);
+  font-weight: 300;
+}
+
+.cs-p:last-child {
+  margin-bottom: 0;
+}
+
+/* Callout / highlight block */
+.cs-callout {
+  background: var(--accent-dim);
+  border: 1px solid rgba(200,169,110,0.2);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: var(--space-5) var(--space-6);
+  margin: var(--space-6) 0;
+}
+
+.cs-callout p {
+  font-size: 16px;
+  color: var(--text-primary);
+  line-height: 1.7;
+  font-style: italic;
+  font-family: var(--font-display);
+  font-weight: 400;
+}
+
+/* Feature grid */
+.cs-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin: var(--space-6) 0;
+}
+
+.cs-feature-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  transition: border-color var(--transition);
+}
+
+.cs-feature-card:hover {
+  border-color: var(--border-2);
+}
+
+.cs-feature-card__icon {
+  width: 36px;
+  height: 36px;
+  background: var(--accent-dim);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-4);
+  font-size: 16px;
+}
+
+.cs-feature-card__title {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: var(--space-2);
+}
+
+.cs-feature-card__desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  font-weight: 300;
+}
+
+/* Outcome stats */
+.cs-outcomes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin: var(--space-6) 0;
+}
+
+.cs-outcome {
+  text-align: center;
+  padding: var(--space-6);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.cs-outcome__num {
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 300;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: var(--space-2);
+}
+
+.cs-outcome__label {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+/* Mockup placeholder */
+.cs-mockup {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  margin: var(--space-6) 0;
+  border: 1px solid var(--border);
+}
+
+.cs-mockup__inner {
+  aspect-ratio: 16/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.cs-mockup__label {
+  position: absolute;
+  bottom: var(--space-4);
+  left: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.3);
+  background: rgba(0,0,0,0.5);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+}
+
+/* Step list */
+.cs-steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin: var(--space-5) 0;
+}
+
+.cs-step {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.cs-step__num {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  background: var(--accent-dim);
+  border: 1px solid rgba(200,169,110,0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent);
+}
+
+.cs-step__content {}
+
+.cs-step__title {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: var(--space-1);
+}
+
+.cs-step__desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  font-weight: 300;
+}
+
+/* ============================================
+   THE HAUNTING — SPECIFIC
+   ============================================ */
+#page-haunting .cs-hero__bg {
+  background: linear-gradient(135deg, #060610 0%, #140808 30%, #1e0f0f 55%, #2a1010 75%, #060610 100%);
+}
+
+.haunting-cs-hero-decoration {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.haunting-cs-hero-decoration::before {
+  content: '';
+  position: absolute;
+  top: 20%;
+  right: 10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(212,97,74,0.12) 0%, transparent 70%);
+}
+
+.haunting-cs-hero-decoration::after {
+  content: '';
+  position: absolute;
+  bottom: 30%;
+  left: 20%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(200,50,50,0.08) 0%, transparent 70%);
+}
+
+/* Large Haunting mockup */
+.haunting-full-mockup {
+  width: 100%;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, #0a0a14 0%, #1a0a0a 40%, #2d1010 70%, #0a0a14 100%);
+  border: 1px solid rgba(212,97,74,0.15);
+  overflow: hidden;
+}
+
+.haunting-full-mockup__inner {
+  aspect-ratio: 16/9;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+.haunting-full-mockup__inner::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle, rgba(212,97,74,0.08) 0%, transparent 70%);
+}
+
+.haunting-nav-mock {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(212,97,74,0.15);
+}
+
+.haunting-nav-tabs {
+  display: flex;
+  gap: 16px;
+}
+
+.haunting-nav-tab {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.25);
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 3px;
+}
+
+.haunting-nav-tab--active {
+  background: rgba(212,97,74,0.15);
+  color: rgba(212,97,74,0.8);
+}
+
+.haunting-content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  flex: 1;
+}
+
+.haunting-content-card {
+  border-radius: 8px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(212,97,74,0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.haunting-content-card__top {
+  flex: 1;
+  background: rgba(212,97,74,0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.haunting-content-card__top-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(212,97,74,0.15);
+  border: 1px solid rgba(212,97,74,0.3);
+}
+
+.haunting-content-card__bottom {
+  padding: 8px;
+}
+
+.haunting-content-card__label {
+  font-family: var(--font-mono);
+  font-size: 7px;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+.haunting-content-card__bar {
+  height: 2px;
+  border-radius: 1px;
+  background: rgba(212,97,74,0.4);
+}
+
+.haunting-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.haunting-progress-label {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+.haunting-progress-track {
+  flex: 1;
+  height: 2px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 1px;
+}
+
+.haunting-progress-fill {
+  height: 100%;
+  background: rgba(212,97,74,0.6);
+  border-radius: 1px;
+  box-shadow: 0 0 6px rgba(212,97,74,0.4);
+}
+
+/* ============================================
+   MISSION READY — SPECIFIC
+   ============================================ */
+#page-mission .cs-hero__bg {
+  background: linear-gradient(135deg, #040810 0%, #060f1a 30%, #0a1a2e 55%, #081424 75%, #040810 100%);
+}
+
+.mission-cs-hero-decoration {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.mission-cs-hero-decoration::before {
+  content: '';
+  position: absolute;
+  top: 20%;
+  right: 10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(74,127,212,0.1) 0%, transparent 70%);
+}
+
+/* Mission phone mockup group */
+.mission-phones-mockup {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  align-items: flex-start;
+  margin: var(--space-6) 0;
+  padding: var(--space-7) var(--space-6);
+  background: linear-gradient(to bottom, var(--bg-2), var(--bg));
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+}
+
+.mission-phone-mock {
+  width: 160px;
+  background: var(--bg-4);
+  border-radius: 20px;
+  border: 1px solid rgba(74,127,212,0.25);
+  overflow: hidden;
+  box-shadow: 0 24px 48px rgba(0,0,0,0.5);
+}
+
+.mission-phone-mock--main {
+  width: 180px;
+  margin-top: -20px;
+  border-color: rgba(74,127,212,0.4);
+  box-shadow: 0 32px 64px rgba(0,0,0,0.6), 0 0 40px rgba(74,127,212,0.1);
+}
+
+.mission-phone-mock__screen {
+  padding: 16px 14px;
+  min-height: 300px;
+  background: var(--bg-3);
+}
+
+.mission-phone-mock--main .mission-phone-mock__screen {
+  min-height: 340px;
+}
+
+.mp-status-bar {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: var(--text-tertiary);
+  margin-bottom: 12px;
+}
+
+.mp-score-hero {
+  text-align: center;
+  padding: 12px 0 8px;
+}
+
+.mp-score-big {
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 300;
+  color: var(--blue-accent);
+  line-height: 1;
+}
+
+.mp-score-label {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.mp-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 10px 0;
+}
+
+.mp-stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.mp-stat-name {
+  font-size: 9px;
+  color: var(--text-tertiary);
+  font-weight: 300;
+}
+
+.mp-stat-val {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-secondary);
+}
+
+.mp-progress-section {
+  margin-top: 10px;
+}
+
+.mp-progress-label-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.mp-progress-label-text {
+  font-size: 8px;
+  color: var(--text-tertiary);
+}
+
+.mp-progress-track {
+  height: 3px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 2px;
+  margin-bottom: 8px;
+}
+
+.mp-progress-fill {
+  height: 100%;
+  background: var(--blue-accent);
+  border-radius: 2px;
+}
+
+.mp-btn-mock {
+  margin-top: 12px;
+  background: rgba(74,127,212,0.15);
+  border: 1px solid rgba(74,127,212,0.3);
+  border-radius: 6px;
+  padding: 7px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  color: var(--blue-accent);
+}
+
+.mp-workout-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.mp-workout-icon {
+  width: 24px;
+  height: 24px;
+  background: rgba(74,127,212,0.1);
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.mp-workout-name {
+  font-size: 9px;
+  color: var(--text-secondary);
+  flex: 1;
+}
+
+.mp-workout-count {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--blue-accent);
+}
+
+/* ============================================
+   ABOUT PAGE
+   ============================================ */
+.about-hero {
+  padding: var(--space-10) 0 var(--space-9);
+}
+
+.about-hero__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-10);
+  align-items: start;
+}
+
+.about-hero__label {
+  margin-bottom: var(--space-5);
+}
+
+.about-hero__title {
+  font-size: clamp(40px, 5vw, 68px);
+  margin-bottom: var(--space-6);
+  line-height: 1.1;
+}
+
+.about-hero__intro {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+.about-hero__visual {
+  padding-top: var(--space-6);
+}
+
+.about-photo-placeholder {
+  aspect-ratio: 3/4;
+  max-height: 500px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  position: relative;
+  overflow: hidden;
+}
+
+.about-photo-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--surface) 0%, var(--bg-4) 100%);
+}
+
+.about-photo-placeholder__text {
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--text-tertiary);
+}
+
+.about-photo-initials {
+  position: relative;
+  font-family: var(--font-display);
+  font-size: 72px;
+  font-weight: 300;
+  color: rgba(200,169,110,0.15);
+  line-height: 1;
+}
+
+/* Philosophy section */
+.about-philosophy {
+  padding: var(--space-9) 0;
+  border-top: 1px solid var(--border);
+}
+
+.about-philosophy__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-9);
+  align-items: start;
+}
+
+.about-philosophy__quote {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 300;
+  line-height: 1.35;
+  color: var(--text-primary);
+}
+
+.about-philosophy__quote em {
+  color: var(--accent);
+  font-style: italic;
+}
+
+.about-philosophy__content {}
+
+.about-philosophy__body {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: var(--space-5);
+  font-weight: 300;
+}
+
+/* Strengths */
+.about-strengths {
+  padding: var(--space-9) 0;
+  border-top: 1px solid var(--border);
+}
+
+.strengths-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin-top: var(--space-7);
+}
+
+.strength-card {
+  padding: var(--space-5);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition);
+}
+
+.strength-card:hover {
+  border-color: var(--border-2);
+  transform: translateY(-2px);
+}
+
+.strength-card__icon {
+  width: 32px;
+  height: 32px;
+  background: var(--accent-dim);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  margin-bottom: var(--space-3);
+}
+
+.strength-card__title {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: var(--space-2);
+}
+
+.strength-card__desc {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* ============================================
+   RESUME PAGE
+   ============================================ */
+.resume-page {
+  padding: var(--space-10) 0;
+}
+
+.resume-header {
+  margin-bottom: var(--space-9);
+  padding-bottom: var(--space-8);
+  border-bottom: 1px solid var(--border);
+}
+
+.resume-header__inner {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-6);
+}
+
+.resume-name {
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1;
+  margin-bottom: var(--space-3);
+}
+
+.resume-tagline {
+  font-size: 16px;
+  color: var(--text-secondary);
+  font-weight: 300;
+}
+
+.resume-contact-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.resume-pill {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 6px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.resume-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--space-9);
+}
+
+.resume-section-title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border);
+}
+
+.resume-job {
+  margin-bottom: var(--space-7);
+  padding-bottom: var(--space-7);
+  border-bottom: 1px solid var(--border);
+}
+
+.resume-job:last-child {
+  border-bottom: none;
+}
+
+.resume-job__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-2);
+  gap: var(--space-4);
+}
+
+.resume-job__title {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.resume-job__period {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  margin-top: 2px;
+}
+
+.resume-job__company {
+  font-size: 13px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  margin-bottom: var(--space-4);
+}
+
+.resume-job__bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.resume-job__bullets li {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  font-weight: 300;
+  padding-left: var(--space-4);
+  position: relative;
+}
+
+.resume-job__bullets li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--text-tertiary);
+  font-size: 12px;
+}
+
+.resume-skills-section {
+  margin-bottom: var(--space-7);
+}
+
+.resume-skill-group {
+  margin-bottom: var(--space-5);
+}
+
+.resume-skill-group__label {
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: var(--space-3);
+  color: var(--text-primary);
+}
+
+.resume-skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.resume-skill-tag {
+  font-size: 12px;
+  color: var(--text-secondary);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  font-weight: 300;
+}
+
+.resume-cert {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.resume-cert:last-child {
+  border-bottom: none;
+}
+
+.resume-cert__title {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.resume-cert__org {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-tertiary);
+  letter-spacing: 0.05em;
+}
+
+/* ============================================
+   MOBILE MENU
+   ============================================ */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: rgba(12,12,14,0.98);
+  backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-6);
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-menu.open {
+  transform: translateX(0);
+}
+
+.mobile-menu__link {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 300;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color var(--transition);
+}
+
+.mobile-menu__link:hover {
+  color: var(--text-primary);
+}
+
+.mobile-menu__close {
+  position: absolute;
+  top: var(--space-5);
+  right: var(--space-6);
+  cursor: pointer;
+  padding: var(--space-2);
+  color: var(--text-secondary);
+  font-size: 24px;
+}
+
+/* ============================================
+   REVEAL ANIMATIONS
+   ============================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+  .hero__inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .hero__visual {
+    justify-content: flex-start;
+  }
+
+  .hero__badge-grid {
+    max-width: 100%;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-preview {
+    grid-template-columns: 1fr;
+    gap: var(--space-7);
+  }
+
+  .cs-section__header {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .cs-feature-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .cs-outcomes {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .about-hero__inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-7);
+  }
+
+  .about-photo-placeholder {
+    max-height: 300px;
+  }
+
+  .about-philosophy__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .strengths-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .resume-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .resume-header__inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer__inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: var(--space-5);
+  }
+
+  .footer__nav {
+    justify-content: center;
+  }
+
+  .footer__links {
+    justify-content: center;
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    gap: var(--space-2);
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --space-9: 64px;
+    --space-10: 80px;
+  }
+
+  .nav__links, .nav__cta {
+    display: none;
+  }
+
+  .nav__hamburger {
+    display: flex;
+  }
+
+  .hero__title {
+    font-size: clamp(40px, 12vw, 64px);
+  }
+
+  .hero__badge-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .cs-feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cs-outcomes {
+    grid-template-columns: 1fr;
+  }
+
+  .strengths-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .resume-cta {
+    flex-direction: column;
+    padding: var(--space-6);
+    text-align: center;
+  }
+
+  .section__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  .mission-phones-mockup {
+    gap: 10px;
+  }
+
+  .mission-phone-mock {
+    width: 110px;
+  }
+
+  .mission-phone-mock--main {
+    width: 130px;
+  }
+
+  .cs-meta {
+    gap: var(--space-5);
+  }
+
+  .contact-section__actions {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .container, .container--narrow {
+    padding: 0 var(--space-5);
+  }
+
+  .hero__actions {
+    flex-direction: column;
+  }
+
+  .hero__badge-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero__badge--wide {
+    grid-column: span 2;
+  }
+
+  .cs-hero__title {
+    font-size: clamp(36px, 12vw, 60px);
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     NAVIGATION
+     ============================================ -->
+<nav class="nav" id="main-nav">
+  <div class="nav__inner">
+    <div class="nav__logo" onclick="showPage('home')" style="cursor:pointer">SR<span>.</span></div>
+    <ul class="nav__links">
+      <li><a onclick="showPage('home'); scrollToSection('work')" href="#">Work</a></li>
+      <li><a onclick="showPage('about')" href="#">About</a></li>
+      <li><a onclick="showPage('resume')" href="#">Resume</a></li>
+      <li><a onclick="showPage('home'); scrollToSection('contact')" href="#">Contact</a></li>
+    </ul>
+    <div class="nav__cta">
+      <a href="mailto:Stevenramos86012@gmail.com" class="btn btn--outline btn--sm">Get in Touch</a>
+    </div>
+    <div class="nav__hamburger" onclick="toggleMobileMenu()" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <div class="mobile-menu__close" onclick="toggleMobileMenu()">✕</div>
+  <span class="mobile-menu__link" onclick="showPage('home'); toggleMobileMenu()">Home</span>
+  <span class="mobile-menu__link" onclick="showPage('home'); scrollToSection('work'); toggleMobileMenu()">Work</span>
+  <span class="mobile-menu__link" onclick="showPage('about'); toggleMobileMenu()">About</span>
+  <span class="mobile-menu__link" onclick="showPage('resume'); toggleMobileMenu()">Resume</span>
+  <span class="mobile-menu__link" onclick="showPage('home'); scrollToSection('contact'); toggleMobileMenu()">Contact</span>
+</div>
+
+<!-- ============================================
+     HOME PAGE
+     ============================================ -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__inner">
+      <div class="hero__left">
+        <div class="hero__label">
+          <span class="t-label">UX / Product Designer</span>
+        </div>
+        <h1 class="t-display hero__title reveal">
+          Designing<br>
+          systems that<br>
+          <em>move people</em><br>
+          forward.
+        </h1>
+        <p class="hero__subtitle reveal reveal-delay-2">
+          Steven Ramos — product designer with shipped AAA experience at Infinity Ward. Specializing in complex UX systems, mobile products, and interaction design that scales.
+        </p>
+        <div class="hero__actions reveal reveal-delay-3">
+          <button class="btn btn--primary" onclick="showPage('home'); scrollToSection('work')">
+            View Work
+            <svg class="btn-arrow" viewBox="0 0 14 14" fill="none">
+              <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button class="btn btn--outline" onclick="showPage('about')">About Me</button>
+        </div>
+      </div>
+      <div class="hero__visual reveal reveal-delay-2">
+        <div class="hero__badge-grid">
+          <div class="hero__badge">
+            <div class="hero__badge-num">4+</div>
+            <div class="hero__badge-label">Years designing digital products</div>
+          </div>
+          <div class="hero__badge">
+            <div class="hero__badge-num">25M+</div>
+            <div class="hero__badge-label">Players reached with shipped work</div>
+          </div>
+          <div class="hero__badge">
+            <div class="hero__badge-num">2</div>
+            <div class="hero__badge-label">AAA titles shipped at Infinity Ward</div>
+          </div>
+          <div class="hero__badge hero__badge--wide">
+            <div class="hero__badge-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <circle cx="9" cy="9" r="6" stroke="var(--accent)" stroke-width="1.2"/>
+                <path d="M9 6v3l2 2" stroke="var(--accent)" stroke-width="1.2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <div style="font-size:13px; font-weight:500; margin-bottom:2px">Marine Corps Veteran</div>
+              <div style="font-size:12px; color:var(--text-secondary); font-weight:300">Discipline, ownership, and execution mindset</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SELECTED WORK -->
+  <section class="section" id="work">
+    <div class="container">
+      <div class="section__header reveal">
+        <div>
+          <div class="t-label" style="margin-bottom:var(--space-3)">Selected Work</div>
+          <h2 class="t-headline section__title">Two projects.<br>Real systems. Real impact.</h2>
+        </div>
+        <a onclick="showPage('home'); scrollToSection('work')" href="#" class="btn btn--ghost" style="display:flex;align-items:center;gap:6px; white-space:nowrap">
+          All Projects
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+      <div class="projects-grid">
+        <!-- The Haunting -->
+        <div class="project-card project-card--haunting reveal" onclick="showPage('haunting')">
+          <div class="project-card__visual">
+            <div class="project-card__visual-inner">
+              <div class="haunting-visual">
+                <div class="haunting-ui-mockup">
+                  <div class="haunting-label">Season 06 — The Haunting</div>
+                  <div class="haunting-bar haunting-bar--accent"></div>
+                  <div class="haunting-bar" style="width:80%"></div>
+                  <div class="haunting-tile-row">
+                    <div class="haunting-tile haunting-tile--active"></div>
+                    <div class="haunting-tile haunting-tile--active"></div>
+                    <div class="haunting-tile"></div>
+                    <div class="haunting-tile"></div>
+                    <div class="haunting-tile"></div>
+                  </div>
+                  <div class="haunting-tile-row">
+                    <div class="haunting-tile"></div>
+                    <div class="haunting-tile haunting-tile--active"></div>
+                    <div class="haunting-tile"></div>
+                    <div class="haunting-tile haunting-tile--active"></div>
+                    <div class="haunting-tile"></div>
+                  </div>
+                  <div style="display:flex;gap:8px;width:100%">
+                    <div style="flex:1;height:32px;border-radius:4px;background:rgba(212,97,74,0.1);border:1px solid rgba(212,97,74,0.25);display:flex;align-items:center;justify-content:center;">
+                      <span style="font-family:var(--font-mono);font-size:8px;color:rgba(212,97,74,0.7);letter-spacing:0.15em">CHALLENGES</span>
+                    </div>
+                    <div style="flex:1;height:32px;border-radius:4px;background:rgba(212,97,74,0.06);border:1px solid rgba(212,97,74,0.15);"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project-card__content">
+            <div class="project-card__tags">
+              <span class="project-card__tag">UX Systems</span>
+              <span class="project-card__tag">Live-Service</span>
+              <span class="project-card__tag">Call of Duty</span>
+              <span class="project-card__tag">25M+ Players</span>
+            </div>
+            <h3 class="project-card__title">The Haunting</h3>
+            <p class="project-card__desc">
+              Led UX design for Call of Duty's largest seasonal event — a complex live-service feature reaching 25M+ players. Designed end-to-end systems for content discovery, challenge tracking, and player progression across multiple game modes.
+            </p>
+            <div class="project-card__footer">
+              <span class="project-card__stat">Infinity Ward · 2023</span>
+              <span class="project-card__link">
+                View Case Study
+                <svg class="link-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M2 2h10v10M2 12L12 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mission Ready -->
+        <div class="project-card project-card--mission reveal reveal-delay-2" onclick="showPage('mission')">
+          <div class="project-card__visual">
+            <div class="mission-visual">
+              <div class="mission-phone" style="transform:rotate(-4deg)">
+                <div class="mission-phone-screen">
+                  <div class="mission-score-display">287</div>
+                  <div class="mission-score-label">PFT SCORE</div>
+                  <div class="mission-bar-row" style="margin-top:8px">
+                    <div class="mission-bar-fill" style="width:75%"></div>
+                  </div>
+                  <div class="mission-small-stat">1st Class</div>
+                  <div class="mission-bar-row">
+                    <div class="mission-bar-fill" style="width:60%;background:rgba(74,127,212,0.5)"></div>
+                  </div>
+                  <div class="mission-small-stat">Day 12 / 30</div>
+                </div>
+              </div>
+              <div class="mission-phone" style="margin-top:-16px;z-index:2;width:90px;height:158px;">
+                <div class="mission-phone-screen">
+                  <div style="font-family:var(--font-mono);font-size:7px;color:var(--text-tertiary);margin-bottom:8px;letter-spacing:0.1em">MISSION READY</div>
+                  <div class="mission-score-display" style="font-size:28px">295</div>
+                  <div class="mission-score-label">MAX SCORE</div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:8px">
+                    <div class="mission-small-stat">Pullups<br><span style="color:var(--blue-accent)">20</span></div>
+                    <div class="mission-small-stat">Run<br><span style="color:var(--blue-accent)">18:00</span></div>
+                    <div class="mission-small-stat">Crunches<br><span style="color:var(--blue-accent)">100</span></div>
+                    <div class="mission-small-stat">CFT<br><span style="color:var(--blue-accent)">300</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="mission-phone" style="transform:rotate(4deg)">
+                <div class="mission-phone-screen">
+                  <div style="font-family:var(--font-mono);font-size:7px;color:var(--text-tertiary);margin-bottom:6px">WORKOUTS</div>
+                  <div style="display:flex;flex-direction:column;gap:5px">
+                    <div class="mp-workout-item">
+                      <div class="mp-workout-icon"></div>
+                      <div class="mp-workout-name">3-Mile Run</div>
+                      <div class="mp-workout-count">×3</div>
+                    </div>
+                    <div class="mp-workout-item">
+                      <div class="mp-workout-icon"></div>
+                      <div class="mp-workout-name">Pull-ups</div>
+                      <div class="mp-workout-count">×4</div>
+                    </div>
+                    <div class="mp-workout-item">
+                      <div class="mp-workout-icon"></div>
+                      <div class="mp-workout-name">Crunches</div>
+                      <div class="mp-workout-count">×5</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project-card__content">
+            <div class="project-card__tags">
+              <span class="project-card__tag">Mobile UX</span>
+              <span class="project-card__tag">Fitness App</span>
+              <span class="project-card__tag">Product Design</span>
+              <span class="project-card__tag">iOS</span>
+            </div>
+            <h3 class="project-card__title">Mission Ready</h3>
+            <p class="project-card__desc">
+              A performance-first mobile app helping U.S. Marines calculate PFT/CFT scores, follow training programs, and track progress toward fitness standards. Designed for speed, clarity, and sustained motivation.
+            </p>
+            <div class="project-card__footer">
+              <span class="project-card__stat">Mobile / Fitness · 2024</span>
+              <span class="project-card__link">
+                View Case Study
+                <svg class="link-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M2 2h10v10M2 12L12 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT PREVIEW -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="about-preview">
+        <div class="reveal">
+          <div class="about-preview__label">
+            <span class="t-label">About</span>
+          </div>
+          <h2 class="t-headline about-preview__title">Shipping real products. Solving real problems.</h2>
+          <p class="about-preview__body">
+            I'm a UX/UI and product designer with 4+ years of experience building complex digital systems. My background at Infinity Ward gave me a rare combination: AAA production rigor, large-scale systems thinking, and experience designing for tens of millions of users.
+          </p>
+          <p class="about-preview__body">
+            As a former U.S. Marine, I bring the same ownership and precision to design that I brought to the field — with a focus on clarity, usability, and outcomes that actually matter.
+          </p>
+          <button class="btn btn--outline" onclick="showPage('about')">
+            Full Story
+            <svg class="btn-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <div class="about-preview__visual reveal reveal-delay-2">
+          <div class="about-stat">
+            <div class="about-stat__num">MW II</div>
+            <div class="about-stat__label">Call of Duty: Modern Warfare II — Shipped</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat__num">DMZ</div>
+            <div class="about-stat__label">CoD Warzone 2.0 & DMZ — Shipped</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat__num">IW</div>
+            <div class="about-stat__label">Infinity Ward — UX Designer since 2022</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat__num">USMC</div>
+            <div class="about-stat__label">Marine Corps Veteran — HIMARS Chief</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESUME CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="resume-cta reveal">
+        <div class="resume-cta__text">
+          <h3>Want the full picture?</h3>
+          <p>Download my resume for a complete view of experience, skills, and shipped work.</p>
+        </div>
+        <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;flex-shrink:0">
+          <button class="btn btn--primary" onclick="showPage('resume')">
+            View Resume
+            <svg class="btn-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <a href="#" class="btn btn--outline">Download PDF</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT CTA -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <div class="reveal">
+        <div class="t-label" style="margin-bottom:var(--space-5)">Let's Talk</div>
+        <h2 class="t-display contact-section__title">Open to the right<br><em style="color:var(--accent)">opportunity.</em></h2>
+        <p class="contact-section__subtitle">
+          I'm currently available for full-time product design roles. If you're building something interesting, I'd love to hear about it.
+        </p>
+        <div class="contact-section__actions">
+          <a href="mailto:Stevenramos86012@gmail.com" class="btn btn--primary">
+            Send a Message
+            <svg class="btn-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/stevenramos" target="_blank" class="btn btn--outline">LinkedIn</a>
+        </div>
+        <a href="mailto:Stevenramos86012@gmail.com" class="contact-email">Stevenramos86012@gmail.com</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <div class="footer__name">STEVEN RAMOS</div>
+        <div class="footer__title-text">UX / Product Designer</div>
+      </div>
+      <ul class="footer__nav">
+        <li><a onclick="showPage('home'); scrollToSection('work')" href="#">Work</a></li>
+        <li><a onclick="showPage('about')" href="#">About</a></li>
+        <li><a onclick="showPage('resume')" href="#">Resume</a></li>
+        <li><a onclick="showPage('home'); scrollToSection('contact')" href="#">Contact</a></li>
+      </ul>
+      <div class="footer__links">
+        <a href="mailto:Stevenramos86012@gmail.com" class="footer__link">Email</a>
+        <a href="https://linkedin.com/in/stevenramos" target="_blank" class="footer__link">LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span class="footer__copy">© 2024 Steven Ramos</span>
+      <span class="footer__copy">Miami, FL</span>
+    </div>
+  </footer>
+
+</div><!-- /page-home -->
+
+<!-- ============================================
+     CASE STUDY 1 — THE HAUNTING
+     ============================================ -->
+<div class="page" id="page-haunting">
+
+  <!-- HERO -->
+  <div class="cs-hero">
+    <div class="cs-hero__bg">
+      <div class="haunting-cs-hero-decoration"></div>
+    </div>
+    <div class="cs-hero__overlay"></div>
+    <div class="cs-hero__content">
+      <div class="cs-hero__back" onclick="showPage('home'); scrollToSection('work')">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        BACK TO WORK
+      </div>
+      <div class="cs-hero__label">
+        <span class="t-label">Case Study 01</span>
+      </div>
+      <h1 class="t-display cs-hero__title">The<br><em style="font-style:italic; color:var(--red-accent)">Haunting</em></h1>
+      <p class="cs-hero__desc">
+        Designing a major seasonal live-service event for Call of Duty — from content discovery to challenge completion — reaching over 25 million players worldwide.
+      </p>
+      <div class="cs-meta">
+        <div class="cs-meta__item">
+          <span class="cs-meta__label">Role</span>
+          <span class="cs-meta__value">UX Designer</span>
+        </div>
+        <div class="cs-meta__item">
+          <span class="cs-meta__label">Company</span>
+          <span class="cs-meta__value">Infinity Ward</span>
+        </div>
+        <div class="cs-meta__item">
+          <span class="cs-meta__label">Year</span>
+          <span class="cs-meta__value">2023</span>
+        </div>
+        <div class="cs-meta__item">
+          <span class="cs-meta__label">Reach</span>
+          <span class="cs-meta__value">25M+ Players</span>
+        </div>
+        <div class="cs-meta__item">
+          <span class="cs-meta__label">Type</span>
+          <span class="cs-meta__value">Live-Service / UX Systems</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="cs-body">
+
+    <!-- Full Mockup -->
+    <div style="padding: var(--space-8) 0 0">
+      <div class="haunting-full-mockup reveal">
+        <div class="haunting-full-mockup__inner">
+          <div class="haunting-nav-mock">
+            <div class="haunting-nav-tabs">
+              <div class="haunting-nav-tab haunting-nav-tab--active">Overview</div>
+              <div class="haunting-nav-tab">Challenges</div>
+              <div class="haunting-nav-tab">Operators</div>
+              <div class="haunting-nav-tab">Rewards</div>
+              <div class="haunting-nav-tab">Store</div>
+            </div>
+            <div style="font-family:var(--font-mono);font-size:8px;color:rgba(212,97,74,0.5);letter-spacing:0.1em">SEASON 06</div>
+          </div>
+          <div class="haunting-content-grid">
+            <div class="haunting-content-card">
+              <div class="haunting-content-card__top">
+                <div class="haunting-content-card__top-icon"></div>
+              </div>
+              <div class="haunting-content-card__bottom">
+                <div class="haunting-content-card__label">Featured</div>
+                <div class="haunting-content-card__bar" style="width:80%"></div>
+              </div>
+            </div>
+            <div class="haunting-content-card">
+              <div class="haunting-content-card__top">
+                <div class="haunting-content-card__top-icon" style="background:rgba(200,169,110,0.12);border-color:rgba(200,169,110,0.3)"></div>
+              </div>
+              <div class="haunting-content-card__bottom">
+                <div class="haunting-content-card__label">Challenges</div>
+                <div class="haunting-content-card__bar" style="width:55%;background:rgba(200,169,110,0.5)"></div>
+              </div>
+            </div>
+            <div class="haunting-content-card">
+              <div class="haunting-content-card__top">
+                <div class="haunting-content-card__top-icon" style="background:rgba(255,255,255,0.03);border-color:rgba(255,255,255,0.1)"></div>
+              </div>
+              <div class="haunting-content-card__bottom">
+                <div class="haunting-content-card__label">Rewards</div>
+                <div class="haunting-content-card__bar" style="width:35%;background:rgba(255,255,255,0.15)"></div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div class="haunting-progress-row">
+              <div class="haunting-progress-label">EVENT PROGRESS</div>
+              <div class="haunting-progress-track">
+                <div class="haunting-progress-fill" style="width:65%"></div>
+              </div>
+              <div style="font-family:var(--font-mono);font-size:8px;color:rgba(212,97,74,0.6)">65%</div>
+            </div>
+            <div class="haunting-progress-row">
+              <div class="haunting-progress-label">DAILY CHALLENGES</div>
+              <div class="haunting-progress-track">
+                <div class="haunting-progress-fill" style="width:40%;background:rgba(200,169,110,0.5)"></div>
+              </div>
+              <div style="font-family:var(--font-mono);font-size:8px;color:rgba(200,169,110,0.6)">2/5</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p style="font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);letter-spacing:0.08em;text-align:center;margin-top:var(--space-3);padding-bottom:var(--space-2)">[ UI MOCKUP — REPLACE WITH ACTUAL SCREENS ]</p>
+    </div>
+
+    <!-- Overview -->
+    <div class="cs-section">
+      <div class="cs-section__header">
+        <div class="cs-section__label">
+          <span class="t-label">Overview</span>
+        </div>
+        <div class="cs-section__content">
+          <h2 class="t-headline cs-h2">The biggest event<br>in the season.</h2>
+          <p class="cs-p">
+            The Haunting is Call of Duty's annual Halloween seasonal event — a high-visibility, multi-week live-service experience deployed across Modern Warfare II and Warzone 2.0. In 2023, I led UX for the event as the primary designer responsible for shaping how millions of players would discover, navigate, and engage with its content.
+          </p>
+          <p class="cs-p">
+            The event included limited-time modes, exclusive operator bundles, seasonal challenges, cosmetic rewards, and a dedicated event hub — all of which needed to be surfaced clearly across a complex existing UI ecosystem.
+          </p>
+          <div class="cs-callout">
+            <p>"How do you design a seasonal experience that feels exciting and discoverable — without overwhelming a player base already navigating a deep, content-rich game?"</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Problem -->
+    <div class="cs-section">
+      <div class="cs-section__header">
+        <div class="cs-section__label">
+          <span class="t-label">The Challenge</span>
+        </div>
+        <div class="cs-section__content">
+          <h2 class="t-headline cs-h2">Visibility vs. noise.</h2>
+          <p class="cs-p">
+            Live-service events are a UX paradox. You need players to feel the excitement and urgency of limited-time content — but the game's existing UI systems are already dense. The Haunting had to land with impact without creating confusion, frustration, or friction.
+          </p>
+          <p class="cs-p">
+            Key tensions we had to resolve:
+          </p>
+          <div class="cs-steps">
+            <div class="cs-step">
+              <div class="cs-step__num">01</div>
+              <div class="cs-step__content">
+                <div class="cs-step__title">Content surfacing at scale</div>
+                <div class="cs-step__desc">Dozens of challenges, rewards, limited-time modes, and bundles needed to be organized, discoverable, and prioritized without overwhelming the main interface.</div>
+              </div>
+            </div>
+            <div class="cs-step">
+              <div class="cs-step__num">02</div>
+              <div class="cs-step__content">
+                <div class="cs-step__title">Cross-title consistency</div>
+                <div class="cs-step__desc">The event spanned both MW II and Warzone 2.0, requiring UX patterns that worked across different game contexts and UI systems.</div>
+              </div>
+            </div>
+            <div class="cs-step">
+              <div class="cs-step__num">03</div>
+              <div class="cs-step__content">
+                <div class="cs-step__title">Motivating long-term engagement</div>
+                <div class="cs-step__desc">Seasonal events live or die on whether players keep coming back. The progression and reward structure had to feel meaningful and achievable over multiple weeks.</div>
+              </div>
+            </div>
+            <div class="cs-step">
+              <div class="cs-step__num">04</div>
+              <div class="cs-step__content">
+                <div class="cs-step__title">Multi-team coordination</div>
+                <div class="cs-step__desc">I was designing in parallel with product, engineering, art, and narrative teams — all operating on tight live-service timelines.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Role -->
+    <div class="cs-section">
+      <div class="cs-section__header">
+        <div class="cs-section__label">
+          <span class="t-label">My Role</span>
+        </div>
+        <div class="cs-section__content">
+          <h2 class="t-headline cs-h2">End-to-end UX ownership.</h2>
+          <p class="cs-p">
+            I served as the primary UX designer for The Haunting event across its full lifecycle — from early strategy and concepting through final delivery and QA. My responsibilities spanned interaction design, information architecture, user flow definition, and cross-functional collaboration.
+          </p>
+          <div class="cs-feature-grid">
+            <div class="cs-feature-card">
+              <div class="cs-feature-card__icon">🗺️</div>
+              <div class="cs-feature-card__title">Experience Strategy</div>
+              <div class="cs-feature-card__desc">Defined the overall UX approach for the event hub, progression structure, and content surfacing strategy.</div>
+            </div>
+            <div class="cs-feature-card">
+              <div class="cs-feature-card__icon">⚙️</div>
+              <div class="cs-feature-card__title">Systems Design</div>
+              <div class="cs-feature-card__desc">Designed the challenge and reward systems, ensuring clarity at every step of the completion flow.</div>
+            </div>
+            <div class="cs-feature-card">
+              <div class="cs-feature-card__icon">🔗</div>
+              <div class="cs-feature-card__title">Cross-Functional Collab</div>
+              <div class="cs-feature-card__desc">Worked closely with product, art, engineering, and narrative to align design decisions with technical and creative constraints.</div>
+            </div>
+            <div class="cs-feature-card">
+              <div class="cs-feature-card__icon">📐</div>
+              <div class="cs-feature-card__title">High-Fidelity Prototyping</div>
+              <div class="cs-feature-card__desc">Produced all UX deliverables in Figma — wireframes, annotated flows, and production-ready UI specs.</div>
+            </div>
+            <div class="cs-feature-card">
+              <div class="cs-feature-card__icon">🔄</div>
+              <div class="cs-feature-card__title">Interaction Design</div>
+              <div class="cs-feature-card__desc">Defined transitions, state changes, and interaction patterns that balanced clarity with the event's cinematic tone.</div>
+            </div>
+            <div class="cs-feature-card">
+              <div class="cs-feature-card__icon">📦</div>
+              <div class="cs-feature-card__title">Shipped Delivery</div>
+              <div class="cs-feature-card__desc">Supported production all the way through ship, working with engineering to ensure implementation fidelity.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UX Strategy -->
+    <div class="cs-section">
+      <div class="cs-section__header">
+        <div class="cs-section__label">
+          <span class="t-label">UX Strategy</span>
+        </div>
+        <div class="cs-section__content">
+          <h2 class="t-headline cs-h2">Build a hub. Reduce friction. Drive return visits.</h2>
+          <p class="cs-p">
+            The core UX strategy was to create a centralized event hub that served as the single source of truth for The Haunting — a space players could return to daily to understand where they stood, what to do next, and what was waiting for them.
+          </p>
+          <p class="cs-p">
+            Rather than scattering event content across the existing menus, we consolidated the experience into a dedicated event layer — accessible from the main navigation — that gave the event its own visual identity while integrating cleanly into the game's existing UI ecosystem.
+          </p>
+          <div class="cs-callout">
+            <p>"Players shouldn't have to hunt for the event. The event should feel like the place everyone is going — obvious, exciting, and rewarding to return to."</p>
+          </div>
+          <h3 class="cs-h3" style="margin-top:var(--space-6)">Design Principles for the Event</h3>
+          <div class="cs-steps" style="margin-top:var(--space-4)">
+            <div class="cs-step">
+              <div class="cs-step__num">→</div>
+              <div class="cs-step__content">
+                <div class="cs-step__title">Instant legibility</div>
+                <div class="cs-step__desc">Any player should be able to open the event hub and immediately understand their progress, active challenges, and next unlock — within 5 seconds.</div>
+              </div>
+            </div>
+            <div class="cs-step">
+              <div class="cs-step__num">→</div>
+              <div class="cs-step__content">
+                <div class="cs-step__title">Layered depth</div>
+                <div class="cs-step__desc">Casual players see the surface: featured content and clear next steps. Engaged players can dig deeper into challenge trees, reward paths, and event lore.</div>
+              </div>
+            </div>
+            <div class="cs-step">
+              <div class="cs-step__num">→</div>
+              <div class="cs-step__content">
+                <div class="cs-step__title">Atmospheric integration</div>
+                <div class="cs-step__desc">The UI should feel like part of the event, not a layer on top of it. Visual hierarchy and motion work with the Halloween aesthetic, not against it.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Features -->
+    <div class="cs-section">
+      <div class="cs-section__header">
+        <div class="cs-section__label">
+          <span class="t-label">Key Features</span>
+        </div>
+        <div class="cs-section__content">
+          <h2 class="t-headline cs-h2">Systems that keep players coming back.</h2>
+          <p class="cs-p">The Haunting hub was built around four core UX systems, each designed to work together as a cohesive progression experience.</p>
+          <div class="cs-feature-grid" style="margin-top:var(--space-6)">
+            <div class="cs-feature-card">
+              <div class="cs-feature-card__icon">🏚️</div>
+              <div class="cs-feature-card__title">Event Hub</div>
+              <div class="cs-feature-card__desc">Centralized landing space for all event content — progress, featured items, and challenge overview in one glanceable view.</div>
+            </div>
+            <div class="cs-feature-card">
+              <div class="cs-feature-card__icon">📋</div>
+              <div class="cs-feature-card__title">Challenge System</div>
+              <div class="cs-feature-card__desc">Tiered daily and weekly challenges with clear completion states, tracking, and unlock visibility for sustained engagement.</div>
+            </div>
+            <div class="cs-feature-card">
+              <div class="cs-feature-card__icon">🎖️</div>
+              <div class="cs-feature-card__title">Reward Path</div>
+              <div class="cs-feature-card__desc">A visible, satisfying reward progression that communicated value at each tier — driving completion without artificial difficulty.</div>
+            </div>
+            <div class="cs-feature-card">
+              <div class="cs-feature-card__icon">🕹️</div>
+              <div class="cs-feature-card__title">Mode Integration</div>
+              <div class="cs-feature-card__desc">Seamless surfacing of limited-time modes directly within the event context, reducing discovery friction for new game experiences.</div>
+            </div>
+            <div class="cs-feature-card">
+              <div class="cs-feature-card__icon">👻</div>
+              <div class="cs-feature-card__title">Operator Showcase</div>
+              <div class="cs-feature-card__desc">A curated view of event-exclusive operators and bundles, presented in context of the seasonal narrative.</div>
+            </div>
+            <div class="cs-feature-card">
+              <div class="cs-feature-card__icon">🔔</div>
+              <div class="cs-feature-card__title">Smart Notifications</div>
+              <div class="cs-feature-card__desc">Contextual callouts and nudges within the UI that directed players toward unfinished challenges and expiring content.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Outcomes -->
+    <div class="cs-section">
+      <div class="cs-section__header">
+        <div class="cs-section__label">
+          <span class="t-label">Outcomes</span>
+        </div>
+        <div class="cs-section__content">
+          <h2 class="t-headline cs-h2">Shipped. Measured. Meaningful.</h2>
+          <p class="cs-p">The Haunting was one of the highest-performing seasonal events in Call of Duty history. The UX improvements contributed directly to measurable player engagement and retention gains.</p>
+          <div class="cs-outcomes">
+            <div class="cs-outcome">
+              <div class="cs-outcome__num">25M+</div>
+              <div class="cs-outcome__label">Players reached by the live event</div>
+            </div>
+            <div class="cs-outcome">
+              <div class="cs-outcome__num">+15%</div>
+              <div class="cs-outcome__label">Seasonal event participation growth</div>
+            </div>
+            <div class="cs-outcome">
+              <div class="cs-outcome__num">+20%</div>
+              <div class="cs-outcome__label">Player retention lift during the event window</div>
+            </div>
+          </div>
+          <p class="cs-p" style="margin-top:var(--space-6)">
+            Beyond the numbers, The Haunting set a new internal benchmark for how Infinity Ward approaches seasonal event UX — with centralized hubs, clear challenge hierarchy, and tighter integration between event content and core navigation.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Learnings -->
+    <div class="cs-section" style="border-bottom:none">
+      <div class="cs-section__header">
+        <div class="cs-section__label">
+          <span class="t-label">Reflection</span>
+        </div>
+        <div class="cs-section__content">
+          <h2 class="t-headline cs-h2">What I'd take forward.</h2>
+          <p class="cs-p">
+            The Haunting reinforced something I believe strongly: the best UX decisions in complex systems come from deeply understanding what the user actually needs to feel and do — not just what the product needs to show. In a content-heavy live-service game, that clarity is everything.
+          </p>
+          <p class="cs-p">
+            Working at this scale also sharpened my ability to move fast without sacrificing quality — balancing velocity with craft in a high-stakes, high-visibility production environment. Those skills transfer directly to any fast-moving product team.
+          </p>
+          <div style="padding-top:var(--space-7);display:flex;gap:var(--space-3)">
+            <button class="btn btn--primary" onclick="showPage('mission')">Next Case Study →</button>
+            <button class="btn btn--outline" onclick="showPage('home'); scrollToSection('work')">Back to Work</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /cs-body -->
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <div class="footer__name">STEVEN RAMOS</div>
+        <div class="footer__title-text">UX / Product Designer</div>
+      </div>
+      <ul class="footer__nav">
+        <li><a onclick="showPage('home'); scrollToSection('work')" href="#">Work</a></li>
+        <li><a onclick="showPage('about')" href="#">About</a></li>
+        <li><a onclick="showPage('resume')" href="#">Resume</a></li>
+      </ul>
+      <div class="footer__links">
+        <a href="mailto:Stevenramos86012@gmail.com" class="footer__link">Email</a>
+        <a href="https://linkedin.com/in/stevenramos" target="_blank" class="footer__link">LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span class="footer__copy">© 2024 Steven Ramos</span>
+      <span class="footer__copy">Miami, FL</span>
+    </div>
+  </footer>
+
+</div><!-- /page-haunting -->
+
+<!-- ============================================
+     CASE STUDY 2 — MISSION READY
+     ============================================ -->
+<div class="page" id="page-mission">
+
+  <!-- HERO -->
+  <div class="cs-hero">
+    <div class="cs-hero__bg">
+      <div class="mission-cs-hero-decoration"></div>
+    </div>
+    <div class="cs-hero__overlay"></div>
+    <div class="cs-hero__content">
+      <div class="cs-hero__back" onclick="showPage('home'); scrollToSection('work')">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        BACK TO WORK
+      </div>
+      <div class="cs-hero__label">
+        <span class="t-label">Case Study 02</span>
+      </div>
+      <h1 class="t-display cs-hero__title">Mission<br><em style="font-style:italic; color:var(--blue-accent)">Ready</em></h1>
+      <p class="cs-hero__desc">
+        A performance-first mobile app for U.S. Marines — built to calculate fitness scores, structure training, and track progress toward PFT and CFT readiness.
+      </p>
+      <div class="cs-meta">
+        <div class="cs-meta__item">
+          <span class="cs-meta__label">Role</span>
+          <span class="cs-meta__value">Product Designer</span>
+        </div>
+        <div class="cs-meta__item">
+          <span class="cs-meta__label">Platform</span>
+          <span class="cs-meta__value">iOS Mobile</span>
+        </div>
+        <div class="cs-meta__item">
+          <span class="cs-meta__label">Year</span>
+          <span class="cs-meta__value">2024</span>
+        </div>
+        <div class="cs-meta__item">
+          <span class="cs-meta__label">Domain</span>
+          <span class="cs-meta__value">Fitness / Performance</span>
+        </div>
+        <div class="cs-meta__item">
+          <span class="cs-meta__label">Type</span>
+          <span class="cs-meta__value">Mobile Product Design</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="cs-body">
+
+    <!-- Phone mockup group -->
+    <div style="padding: var(--space-8) 0 0">
+      <div class="mission-phones-mockup reveal">
+        <!-- Phone 1: Score Calculator -->
+        <div class="mission-phone-mock">
+          <div class="mission-phone-mock__screen">
+            <div class="mp-status-bar"><span>9:41</span><span>●●●</span></div>
+            <div style="font-family:var(--font-mono);font-size:7px;color:var(--text-tertiary);letter-spacing:0.12em;margin-bottom:8px">PFT CALCULATOR</div>
+            <div class="mp-score-hero">
+              <div class="mp-score-big" style="font-size:36px">287</div>
+              <div class="mp-score-label">Total Score</div>
+            </div>
+            <div class="mp-divider"></div>
+            <div class="mp-stat-row"><div class="mp-stat-name">Pullups</div><div class="mp-stat-val">20</div></div>
+            <div class="mp-stat-row"><div class="mp-stat-name">Crunches</div><div class="mp-stat-val">100</div></div>
+            <div class="mp-stat-row"><div class="mp-stat-name">3-Mile Run</div><div class="mp-stat-val">18:30</div></div>
+            <div class="mp-divider"></div>
+            <div style="font-family:var(--font-mono);font-size:8px;color:rgba(74,127,212,0.7);text-align:center;letter-spacing:0.08em">1st CLASS</div>
+          </div>
+        </div>
+
+        <!-- Phone 2 (Main): Dashboard -->
+        <div class="mission-phone-mock mission-phone-mock--main">
+          <div class="mission-phone-mock__screen">
+            <div class="mp-status-bar"><span>9:41</span><span>●●●</span></div>
+            <div style="font-family:var(--font-mono);font-size:8px;color:var(--text-tertiary);letter-spacing:0.12em;margin-bottom:10px">MISSION READY</div>
+            <div class="mp-score-hero">
+              <div class="mp-score-big">295</div>
+              <div class="mp-score-label">Max PFT Score</div>
+            </div>
+            <div class="mp-divider"></div>
+            <div class="mp-progress-section">
+              <div class="mp-progress-label-row">
+                <div class="mp-progress-label-text">Training Progress</div>
+                <div class="mp-progress-label-text" style="color:var(--blue-accent)">Day 14/30</div>
+              </div>
+              <div class="mp-progress-track"><div class="mp-progress-fill" style="width:47%"></div></div>
+              <div class="mp-progress-label-row">
+                <div class="mp-progress-label-text">Weekly Goal</div>
+                <div class="mp-progress-label-text" style="color:var(--blue-accent)">4/5 done</div>
+              </div>
+              <div class="mp-progress-track"><div class="mp-progress-fill" style="width:80%"></div></div>
+            </div>
+            <div class="mp-divider"></div>
+            <div class="mp-stat-row"><div class="mp-stat-name">Next session</div><div class="mp-stat-val" style="color:var(--blue-accent)">Today</div></div>
+            <div class="mp-btn-mock">START WORKOUT</div>
+          </div>
+        </div>
+
+        <!-- Phone 3: Workout Log -->
+        <div class="mission-phone-mock">
+          <div class="mission-phone-mock__screen">
+            <div class="mp-status-bar"><span>9:41</span><span>●●●</span></div>
+            <div style="font-family:var(--font-mono);font-size:7px;color:var(--text-tertiary);letter-spacing:0.12em;margin-bottom:8px">WORKOUT LOG</div>
+            <div class="mp-workout-item">
+              <div class="mp-workout-icon"></div>
+              <div class="mp-workout-name">3-Mile Run</div>
+              <div class="mp-workout-count">18:12</div>
+            </div>
+            <div class="mp-workout-item">
+              <div class="mp-workout-icon"></div>
+              <div class="mp-workout-name">Pull-ups</div>
+              <div class="mp-workout-count">22</div>
+            </div>
+            <div class="mp-workout-item">
+              <div class="mp-workout-icon"></div>
+              <div class="mp-workout-name">Crunches</div>
+              <div class="mp-workout-count">102</div>
+            </div>
+            <div class="mp-workout-item">
+              <div class="mp-workout-icon"></div>
+              <div class="mp-workout-name">CFT Ammo Lift</div>
+              <div class="mp-workout-count">56</div>
+            </div>
+            <div style="margin-top:8px;background:rgba(74,127,212,0.08);border:1px solid rgba(74,127,212,0.2);border-radius:4px;padding:5px;text-align:center;font-family:var(--font-mono);font-size:7px;color:rgba(74,127,212,0.7);letter-spacing:0.1em">+12 pts from last session</div>
+          </div>
+        </div>
+      </div>
+      <p style="font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);letter-spacing:0.08em;text-align:center;margin-top:var(--space-3);padding-bottom:var(--space-2)">[ UI MOCKUP — REPLACE WITH ACTUAL SCREENS ]</p>
+    </div>
+
+    <!-- Overview -->
+    <div class="cs-section">
+      <div class="cs-section__header">
+        <div class="cs-section__label">
+          <span class="t-label">Overview</span>
+        </div>
+        <div class="cs-section__content">
+          <h2 class="t-headline cs-h2">Performance tracking<br>built for the mission.</h2>
+          <p class="cs-p">
+            Mission Ready started with a personal problem. As a Marine Corps veteran, I knew firsthand how stressful PFT and CFT prep could be — and how inadequate the existing tools were. Most Marines relied on spreadsheets, generic fitness apps, or their own mental math to track readiness.
+          </p>
+          <p class="cs-p">
+            I designed Mission Ready as the app I wished I had — a focused, mobile-first performance tool that handles PFT and CFT score calculation, structures training programs around real Marine fitness standards, and keeps users motivated with clear progress tracking.
+          </p>
+          <div class="cs-callout">
+            <p>"Marines are goal-oriented. The app should match that mentality — no fluff, just clarity on where you stand, what you need to do, and how close you are to mission-ready."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Problem -->
+    <div class="cs-section">
+      <div class="cs-section__header">
+        <div class="cs-section__label">
+          <span class="t-label">The Problem</span>
+        </div>
+        <div class="cs-section__content">
+          <h2 class="t-headline cs-h2">No tool built for this user.</h2>
+          <p class="cs-p">
+            U.S. Marines face biannual physical fitness tests — the PFT (Physical Fitness Test) and CFT (Combat Fitness Test) — with scoring tables that vary by age and gender. Getting an accurate score requires cross-referencing tables, performing manual calculations, and understanding tier thresholds. The cognitive overhead is significant.
+          </p>
+          <div class="cs-steps">
+            <div class="cs-step">
+              <div class="cs-step__num">01</div>
+              <div class="cs-step__content">
+                <div class="cs-step__title">Calculation complexity</div>
+                <div class="cs-step__desc">Scoring tables are multi-variable (age group, gender, exercise type, rep count, time) — making mental math error-prone and frustrating.</div>
+              </div>
+            </div>
+            <div class="cs-step">
+              <div class="cs-step__num">02</div>
+              <div class="cs-step__content">
+                <div class="cs-step__title">No structured training path</div>
+                <div class="cs-step__desc">Existing fitness apps aren't designed around Marine standards. There's no structured "path to first class" for PFT or CFT readiness.</div>
+              </div>
+            </div>
+            <div class="cs-step">
+              <div class="cs-step__num">03</div>
+              <div class="cs-step__content">
+                <div class="cs-step__title">Motivation and accountability</div>
+                <div class="cs-step__desc">Without visibility into progress over time, training motivation drops — especially for Marines between duty cycles.</div>
+              </div>
+            </div>
+            <div class="cs-step">
+              <div class="cs-step__num">04</div>
+              <div class="cs-step__content">
+                <div class="cs-step__title">Speed in context</div>
+                <div class="cs-step__desc">Marines are busy. The app needs to deliver value in seconds — not require extensive setup or constant manual input.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Goals -->
+    <div class="cs-section">
+      <div class="cs-section__header">
+        <div class="cs-section__label">
+          <span class="t-label">Product Goals</span>
+        </div>
+        <div class="cs-section__content">
+          <h2 class="t-headline cs-h2">Four goals. One focused product.</h2>
+          <div class="cs-feature-grid" style="margin-top:var(--space-5)">
+            <div class="cs-feature-card">
+              <div class="cs-feature-card__icon">🎯</div>
+              <div class="cs-feature-card__title">Instant Score Clarity</div>
+              <div class="cs-feature-card__desc">Any Marine should be able to input their performance numbers and get an accurate, classified score in under 30 seconds.</div>
+            </div>
+            <div class="cs-feature-card">
+              <div class="cs-feature-card__icon">📈</div>
+              <div class="cs-feature-card__title">Structured Progression</div>
+              <div class="cs-feature-card__desc">A daily and weekly training program specifically designed to move users from their current level toward first-class fitness standards.</div>
+            </div>
+            <div class="cs-feature-card">
+              <div class="cs-feature-card__icon">📊</div>
+              <div class="cs-feature-card__title">Visible Progress</div>
+              <div class="cs-feature-card__desc">Charts, logs, and deltas that make improvement visible — keeping users motivated over weeks and months of preparation.</div>
+            </div>
+            <div class="cs-feature-card">
+              <div class="cs-feature-card__icon">⚡</div>
+              <div class="cs-feature-card__title">Designed for Speed</div>
+              <div class="cs-feature-card__desc">A streamlined, fast-loading UI that respects user time — built for quick daily check-ins, not lengthy sessions.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Core Features -->
+    <div class="cs-section">
+      <div class="cs-section__header">
+        <div class="cs-section__label">
+          <span class="t-label">Core Features</span>
+        </div>
+        <div class="cs-section__content">
+          <h2 class="t-headline cs-h2">Built around what Marines actually need.</h2>
+          <div class="cs-steps" style="margin-top:var(--space-5)">
+            <div class="cs-step">
+              <div class="cs-step__num">01</div>
+              <div class="cs-step__content">
+                <div class="cs-step__title">PFT & CFT Score Calculator</div>
+                <div class="cs-step__desc">Input your reps, time, and age group — get an accurate score, your class tier (1st, 2nd, 3rd), and points breakdown instantly. Built on official Marine Corps scoring tables.</div>
+              </div>
+            </div>
+            <div class="cs-step">
+              <div class="cs-step__num">02</div>
+              <div class="cs-step__content">
+                <div class="cs-step__title">Training Programs</div>
+                <div class="cs-step__desc">Structured 30-day training programs designed for PFT and CFT prep — with daily workouts, progression tracking, and rest day logic built in.</div>
+              </div>
+            </div>
+            <div class="cs-step">
+              <div class="cs-step__num">03</div>
+              <div class="cs-step__content">
+                <div class="cs-step__title">Progress Dashboard</div>
+                <div class="cs-step__desc">A clean, data-forward home screen that shows current score estimate, training streak, weekly goal completion, and trend over time.</div>
+              </div>
+            </div>
+            <div class="cs-step">
+              <div class="cs-step__num">04</div>
+              <div class="cs-step__content">
+                <div class="cs-step__title">Workout Log</div>
+                <div class="cs-step__desc">Log each session's performance numbers with a minimal input flow — minimal friction, maximum data capture, with automatic score calculation post-log.</div>
+              </div>
+            </div>
+            <div class="cs-step">
+              <div class="cs-step__num">05</div>
+              <div class="cs-step__content">
+                <div class="cs-step__title">Standards Reference</div>
+                <div class="cs-step__desc">In-app access to official Marine Corps PFT and CFT scoring standards — organized by age group and test type, always available offline.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UX Decisions -->
+    <div class="cs-section">
+      <div class="cs-section__header">
+        <div class="cs-section__label">
+          <span class="t-label">UX Decisions</span>
+        </div>
+        <div class="cs-section__content">
+          <h2 class="t-headline cs-h2">Intentional choices for performance-minded users.</h2>
+          <p class="cs-p">
+            Every design decision in Mission Ready was filtered through one lens: does this make a Marine's prep faster, clearer, or more motivating? Here are the key UX calls that shaped the product.
+          </p>
+          <div class="cs-callout">
+            <p>"Marines are trained to assess, decide, and act — fast. The UX should match that operating tempo. No buried features. No cognitive overhead."</p>
+          </div>
+          <div class="cs-feature-grid" style="margin-top:var(--space-6)">
+            <div class="cs-feature-card">
+              <div class="cs-feature-card__icon">🔢</div>
+              <div class="cs-feature-card__title">Score-First Hierarchy</div>
+              <div class="cs-feature-card__desc">The score is always the dominant element on every relevant screen — large, clear, and immediately readable. Supporting data is secondary.</div>
+            </div>
+            <div class="cs-feature-card">
+              <div class="cs-feature-card__icon">🔍</div>
+              <div class="cs-feature-card__title">Persistent Score Context</div>
+              <div class="cs-feature-card__desc">Class tier (1st, 2nd, 3rd Class) is always shown alongside the score — because Marines think in tiers, not raw numbers.</div>
+            </div>
+            <div class="cs-feature-card">
+              <div class="cs-feature-card__icon">✏️</div>
+              <div class="cs-feature-card__title">Minimal Input Flow</div>
+              <div class="cs-feature-card__desc">Calculator flows are designed for single-thumb use with large tap targets, numeric pickers, and a maximum of 3 inputs per calculation.</div>
+            </div>
+            <div class="cs-feature-card">
+              <div class="cs-feature-card__icon">🌑</div>
+              <div class="cs-feature-card__title">Dark-First Design</div>
+              <div class="cs-feature-card__desc">A dark, high-contrast UI optimized for outdoor use — important for a user base that trains outside in varying light conditions.</div>
+            </div>
+            <div class="cs-feature-card">
+              <div class="cs-feature-card__icon">📉</div>
+              <div class="cs-feature-card__title">Delta-Forward Progress</div>
+              <div class="cs-feature-card__desc">Progress is always shown as change over time — "+8 points from last session" is more motivating than a static number.</div>
+            </div>
+            <div class="cs-feature-card">
+              <div class="cs-feature-card__icon">⚙️</div>
+              <div class="cs-feature-card__title">Offline-Ready</div>
+              <div class="cs-feature-card__desc">Core features — score calculation, standards reference, active workout — function fully without a network connection.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Expected Impact -->
+    <div class="cs-section">
+      <div class="cs-section__header">
+        <div class="cs-section__label">
+          <span class="t-label">Impact</span>
+        </div>
+        <div class="cs-section__content">
+          <h2 class="t-headline cs-h2">Designed for results, built to scale.</h2>
+          <p class="cs-p">
+            Mission Ready was designed with a clear user value proposition from the start: save time, eliminate confusion, and make fitness readiness feel achievable. The expected product outcomes reflect this focus.
+          </p>
+          <div class="cs-outcomes">
+            <div class="cs-outcome">
+              <div class="cs-outcome__num">&lt;30s</div>
+              <div class="cs-outcome__label">Time to complete a full PFT/CFT score calculation</div>
+            </div>
+            <div class="cs-outcome">
+              <div class="cs-outcome__num">100%</div>
+              <div class="cs-outcome__label">Offline functionality for core features</div>
+            </div>
+            <div class="cs-outcome">
+              <div class="cs-outcome__num">5</div>
+              <div class="cs-outcome__label">Core user flows, each under 3 taps to complete</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reflection -->
+    <div class="cs-section" style="border-bottom:none">
+      <div class="cs-section__header">
+        <div class="cs-section__label">
+          <span class="t-label">Reflection</span>
+        </div>
+        <div class="cs-section__content">
+          <h2 class="t-headline cs-h2">Design from lived experience.</h2>
+          <p class="cs-p">
+            Mission Ready is the project that most directly connects my two identities: Marine and designer. Being the user gave me an unfair advantage in understanding what actually matters — and what doesn't. There's no substitute for that level of domain knowledge when designing a focused utility product.
+          </p>
+          <p class="cs-p">
+            The broader lesson I take from this project applies to any product work: the best tools are invisible. When a Marine opens Mission Ready, they shouldn't be thinking about the app — they should be thinking about their score, their next session, and their goal. That's what good product UX looks like.
+          </p>
+          <div style="padding-top:var(--space-7);display:flex;gap:var(--space-3)">
+            <button class="btn btn--primary" onclick="showPage('about')">Read About Me →</button>
+            <button class="btn btn--outline" onclick="showPage('home'); scrollToSection('work')">Back to Work</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /cs-body -->
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <div class="footer__name">STEVEN RAMOS</div>
+        <div class="footer__title-text">UX / Product Designer</div>
+      </div>
+      <ul class="footer__nav">
+        <li><a onclick="showPage('home'); scrollToSection('work')" href="#">Work</a></li>
+        <li><a onclick="showPage('about')" href="#">About</a></li>
+        <li><a onclick="showPage('resume')" href="#">Resume</a></li>
+      </ul>
+      <div class="footer__links">
+        <a href="mailto:Stevenramos86012@gmail.com" class="footer__link">Email</a>
+        <a href="https://linkedin.com/in/stevenramos" target="_blank" class="footer__link">LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span class="footer__copy">© 2024 Steven Ramos</span>
+      <span class="footer__copy">Miami, FL</span>
+    </div>
+  </footer>
+
+</div><!-- /page-mission -->
+
+<!-- ============================================
+     ABOUT PAGE
+     ============================================ -->
+<div class="page" id="page-about">
+
+  <div class="about-hero">
+    <div class="about-hero__inner container" style="max-width:var(--max-width)">
+      <div class="reveal">
+        <div class="about-hero__label">
+          <span class="t-label">About</span>
+        </div>
+        <h1 class="t-display about-hero__title">
+          Designer.<br>
+          Veteran.<br>
+          <em style="font-style:italic;color:var(--accent)">Problem solver.</em>
+        </h1>
+        <p class="about-hero__intro">
+          I'm Steven Ramos — a UX/UI and product designer based in Miami, FL. I specialize in designing complex digital systems, mobile products, and interaction-rich experiences that actually ship and actually work.
+        </p>
+        <p class="about-hero__intro" style="margin-top:var(--space-4)">
+          My background is unusual for a product designer: I spent four years as a HIMARS Chief in the United States Marine Corps before transitioning into design. The Corps trained me to operate under pressure, lead with ownership, and never confuse activity with results. That mindset is now core to how I approach every design problem.
+        </p>
+      </div>
+      <div class="about-hero__visual reveal reveal-delay-2">
+        <div class="about-photo-placeholder">
+          <div class="about-photo-initials">SR</div>
+          <div class="about-photo-placeholder__text">[ ADD PHOTO HERE ]</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Philosophy -->
+  <div class="about-philosophy">
+    <div class="container">
+      <div class="about-philosophy__grid">
+        <div class="reveal">
+          <div class="t-label" style="margin-bottom:var(--space-5)">Design Philosophy</div>
+          <blockquote class="about-philosophy__quote">
+            "Good design is<br><em>invisible</em> to the<br>user who needs it."
+          </blockquote>
+        </div>
+        <div class="reveal reveal-delay-2">
+          <p class="about-philosophy__body">
+            I believe the mark of excellent UX is when a user accomplishes their goal without ever thinking about the interface. That's the bar I design to. Not delight for its own sake, not visual novelty for its own sake — but clarity, usability, and outcomes that feel effortless.
+          </p>
+          <p class="about-philosophy__body">
+            I think about design from a systems level first. Before I touch a component, I want to understand the full experience — where users come from, what they're trying to do, what happens when things go wrong. Strong interaction design comes from strong information architecture comes from strong product thinking.
+          </p>
+          <p class="about-philosophy__body">
+            And I believe in shipping. Beautiful work that never makes it to users isn't design — it's art. I care about velocity, production fidelity, and working closely with engineers to make sure what we build actually matches what we designed.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Strengths -->
+  <div class="about-strengths">
+    <div class="container">
+      <div class="reveal">
+        <div class="t-label" style="margin-bottom:var(--space-3)">Core Strengths</div>
+        <h2 class="t-headline" style="font-size:clamp(28px,4vw,44px);margin-bottom:0">What I bring to the table.</h2>
+      </div>
+      <div class="strengths-grid">
+        <div class="strength-card reveal">
+          <div class="strength-card__icon">🧩</div>
+          <div class="strength-card__title">Systems Thinking</div>
+          <div class="strength-card__desc">I see the full system before I design the component. Navigation, states, edge cases, error flows — all of it.</div>
+        </div>
+        <div class="strength-card reveal reveal-delay-1">
+          <div class="strength-card__icon">📱</div>
+          <div class="strength-card__title">Mobile UX</div>
+          <div class="strength-card__desc">Designed native mobile products with a mobile-first mindset — thumb zones, gestures, and performance-first decisions.</div>
+        </div>
+        <div class="strength-card reveal reveal-delay-2">
+          <div class="strength-card__icon">⚡</div>
+          <div class="strength-card__title">Interaction Design</div>
+          <div class="strength-card__desc">Transitions, micro-interactions, and motion that serve the user's mental model — not just aesthetics.</div>
+        </div>
+        <div class="strength-card reveal reveal-delay-1">
+          <div class="strength-card__icon">🎨</div>
+          <div class="strength-card__title">High-Fidelity Craft</div>
+          <div class="strength-card__desc">Production-quality Figma work — tight grids, consistent component libraries, and pixel-level precision.</div>
+        </div>
+        <div class="strength-card reveal reveal-delay-2">
+          <div class="strength-card__icon">🤝</div>
+          <div class="strength-card__title">Cross-Functional Collab</div>
+          <div class="strength-card__desc">Comfortable partnering with product, engineering, art, and QA — fluent in the language of each discipline.</div>
+        </div>
+        <div class="strength-card reveal reveal-delay-3">
+          <div class="strength-card__icon">🚀</div>
+          <div class="strength-card__title">Production Velocity</div>
+          <div class="strength-card__desc">Built at live-service pace on two shipped AAA titles. I know how to maintain quality under tight timelines.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Background timeline -->
+  <div style="padding:var(--space-9) 0;border-top:1px solid var(--border)">
+    <div class="container">
+      <div class="t-label" style="margin-bottom:var(--space-7)">Background</div>
+      <div style="display:flex;flex-direction:column;gap:var(--space-5);max-width:640px">
+        <div style="display:flex;gap:var(--space-5);align-items:flex-start">
+          <div style="flex-shrink:0;width:80px;font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);padding-top:2px">2022 — Now</div>
+          <div>
+            <div style="font-size:15px;font-weight:500;margin-bottom:var(--space-2)">UX Designer — Infinity Ward</div>
+            <div style="font-size:13px;color:var(--text-secondary);font-weight:300;line-height:1.65">Designing UX systems for Call of Duty across live-service titles. Shipped features reaching 25M+ players. Led UX for Season 6 "The Haunting" event.</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:var(--space-5);align-items:flex-start">
+          <div style="flex-shrink:0;width:80px;font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);padding-top:2px">2020 — 2022</div>
+          <div>
+            <div style="font-size:15px;font-weight:500;margin-bottom:var(--space-2)">Penn State University</div>
+            <div style="font-size:13px;color:var(--text-secondary);font-weight:300;line-height:1.65">Completed Human-Centered Design & Development coursework. Focused on UX design, HCI, and interface development.</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:var(--space-5);align-items:flex-start">
+          <div style="flex-shrink:0;width:80px;font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);padding-top:2px">2016 — 2020</div>
+          <div>
+            <div style="font-size:15px;font-weight:500;margin-bottom:var(--space-2)">U.S. Marine Corps — HIMARS Chief (Sergeant)</div>
+            <div style="font-size:13px;color:var(--text-secondary);font-weight:300;line-height:1.65">Managed $5M+ artillery systems with 100% operational readiness. Trained 20+ Marines. Meritoriously promoted twice. MCMAP Black Belt Instructor.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div style="padding:var(--space-9) 0;border-top:1px solid var(--border)">
+    <div class="container">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-6);flex-wrap:wrap">
+        <div>
+          <h2 class="t-headline" style="font-size:clamp(28px,4vw,44px);margin-bottom:var(--space-3)">Let's build something together.</h2>
+          <p style="font-size:15px;color:var(--text-secondary);font-weight:300">Currently available for full-time product design roles. Miami-based, open to remote.</p>
+        </div>
+        <div style="display:flex;gap:var(--space-3);flex-shrink:0;flex-wrap:wrap">
+          <a href="mailto:Stevenramos86012@gmail.com" class="btn btn--primary">
+            Get in Touch
+            <svg class="btn-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <button class="btn btn--outline" onclick="showPage('resume')">View Resume</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <div class="footer__name">STEVEN RAMOS</div>
+        <div class="footer__title-text">UX / Product Designer</div>
+      </div>
+      <ul class="footer__nav">
+        <li><a onclick="showPage('home'); scrollToSection('work')" href="#">Work</a></li>
+        <li><a onclick="showPage('about')" href="#">About</a></li>
+        <li><a onclick="showPage('resume')" href="#">Resume</a></li>
+        <li><a onclick="showPage('home'); scrollToSection('contact')" href="#">Contact</a></li>
+      </ul>
+      <div class="footer__links">
+        <a href="mailto:Stevenramos86012@gmail.com" class="footer__link">Email</a>
+        <a href="https://linkedin.com/in/stevenramos" target="_blank" class="footer__link">LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span class="footer__copy">© 2024 Steven Ramos</span>
+      <span class="footer__copy">Miami, FL</span>
+    </div>
+  </footer>
+
+</div><!-- /page-about -->
+
+<!-- ============================================
+     RESUME PAGE
+     ============================================ -->
+<div class="page" id="page-resume">
+
+  <div class="resume-page">
+    <div class="container">
+
+      <div class="resume-header reveal">
+        <div class="resume-header__inner">
+          <div>
+            <h1 class="t-display resume-name">Steven Ramos</h1>
+            <p class="resume-tagline">UX / Product Designer — 4+ years shipping complex digital systems</p>
+          </div>
+          <div>
+            <div class="resume-contact-pills">
+              <span class="resume-pill">
+                <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><circle cx="5.5" cy="5.5" r="4.5" stroke="currentColor" stroke-width="1"/><path d="M5.5 3v2.5L7 7" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+                Miami, FL
+              </span>
+              <span class="resume-pill">
+                <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect x="1" y="2" width="9" height="7" rx="1" stroke="currentColor" stroke-width="1"/><path d="M1 4l4.5 2.5L10 4" stroke="currentColor" stroke-width="1"/></svg>
+                Stevenramos86012@gmail.com
+              </span>
+              <span class="resume-pill">
+                <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect x="1" y="1" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1"/><circle cx="5.5" cy="4" r="1.5" stroke="currentColor" stroke-width="1"/><path d="M2.5 9c0-1.66 1.34-3 3-3s3 1.34 3 3" stroke="currentColor" stroke-width="1"/></svg>
+                LinkedIn
+              </span>
+            </div>
+            <div style="display:flex;gap:var(--space-3);margin-top:var(--space-4)">
+              <a href="#" class="btn btn--primary btn--sm">Download PDF</a>
+              <a href="https://linkedin.com/in/stevenramos" target="_blank" class="btn btn--outline btn--sm">LinkedIn Profile</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile summary -->
+      <div style="padding:var(--space-6);background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);margin-bottom:var(--space-8)" class="reveal">
+        <div class="t-label" style="margin-bottom:var(--space-3)">Profile</div>
+        <p style="font-size:14px;color:var(--text-secondary);line-height:1.8;font-weight:300">
+          UX / Product Designer with 4+ years of experience designing complex systems and user workflows for large-scale digital products. Led UX initiatives for the Call of Duty franchise, delivering features used by millions of players worldwide. Specialized in interaction design, scalable UI systems, and translating product requirements into intuitive user experiences. U.S. Marine Corps veteran known for strong ownership, collaboration, and solving complex UX challenges.
+        </p>
+      </div>
+
+      <div class="resume-grid reveal">
+        <!-- LEFT: Experience -->
+        <div>
+          <div class="resume-section-title">Professional Experience</div>
+
+          <div class="resume-job">
+            <div class="resume-job__header">
+              <div class="resume-job__title">UX Designer</div>
+              <div class="resume-job__period">Sep 2022 — Present</div>
+            </div>
+            <div class="resume-job__company">Infinity Ward</div>
+            <ul class="resume-job__bullets">
+              <li>Designed UX systems and product features for the Call of Duty franchise across live-service titles used by millions of players</li>
+              <li>Led UX for major gameplay systems including operator selection, customization, and multi-step interaction workflows</li>
+              <li>Designed end-to-end user flows, wireframes, and high-fidelity prototypes across multiple large-scale product features</li>
+              <li>Built scalable UI components and documentation to support faster development and consistent design patterns</li>
+              <li>Partnered with product, engineering, and art teams to define requirements and ship production-ready UX solutions</li>
+              <li>Led UX for Season 6 "The Haunting" event (25M+ players), contributing to 15% participation growth and 20% retention lift</li>
+            </ul>
+            <div style="margin-top:var(--space-4);font-family:var(--font-mono);font-size:11px;color:var(--text-tertiary)">
+              Shipped Titles: Call of Duty: Modern Warfare II · CoD Warzone 2.0 & DMZ
+            </div>
+          </div>
+
+          <div class="resume-job">
+            <div class="resume-job__header">
+              <div class="resume-job__title">UX Designer Intern</div>
+              <div class="resume-job__period">May 2022 — Aug 2022</div>
+            </div>
+            <div class="resume-job__company">Infinity Ward</div>
+            <ul class="resume-job__bullets">
+              <li>Improved usability across multiple gameplay systems and interaction flows</li>
+              <li>Designed UI improvements for Backpack Weapon Swap and objective-based modes</li>
+              <li>Contributed to the Calling Cards menu redesign for a seasonal update</li>
+            </ul>
+          </div>
+
+          <div class="resume-job">
+            <div class="resume-job__header">
+              <div class="resume-job__title">HIMARS Chief (Sergeant)</div>
+              <div class="resume-job__period">Oct 2016 — Oct 2020</div>
+            </div>
+            <div class="resume-job__company">United States Marine Corps</div>
+            <ul class="resume-job__bullets">
+              <li>Managed $5M+ artillery systems with 100% operational readiness</li>
+              <li>Trained and mentored 20+ Marines as a MCMAP Black Belt Instructor</li>
+              <li>Meritoriously promoted twice for leadership and performance</li>
+            </ul>
+          </div>
+
+          <div class="resume-section-title" style="margin-top:var(--space-8)">Education</div>
+          <div class="resume-job">
+            <div class="resume-job__header">
+              <div class="resume-job__title">Penn State University</div>
+              <div class="resume-job__period">Aug 2020 — Apr 2022</div>
+            </div>
+            <div class="resume-job__company">Human-Centered Design and Development</div>
+            <ul class="resume-job__bullets">
+              <li>Focused on UX Design, Human-Computer Interaction, and Interface Development</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- RIGHT: Skills & Certs -->
+        <div>
+          <div class="resume-section-title">Skills</div>
+
+          <div class="resume-skills-section">
+            <div class="resume-skill-group">
+              <div class="resume-skill-group__label">Product & UX Design</div>
+              <div class="resume-skill-tags">
+                <span class="resume-skill-tag">Interaction Design</span>
+                <span class="resume-skill-tag">User Flows</span>
+                <span class="resume-skill-tag">Information Architecture</span>
+                <span class="resume-skill-tag">UX/UI Design</span>
+                <span class="resume-skill-tag">Design Systems</span>
+                <span class="resume-skill-tag">Component Libraries</span>
+                <span class="resume-skill-tag">Feature Design</span>
+                <span class="resume-skill-tag">Wireframing</span>
+                <span class="resume-skill-tag">High-Fidelity Prototyping</span>
+              </div>
+            </div>
+            <div class="resume-skill-group">
+              <div class="resume-skill-group__label">Research & Validation</div>
+              <div class="resume-skill-tags">
+                <span class="resume-skill-tag">Usability Testing</span>
+                <span class="resume-skill-tag">Heuristic Evaluation</span>
+                <span class="resume-skill-tag">User Research</span>
+                <span class="resume-skill-tag">UX Audits</span>
+              </div>
+            </div>
+            <div class="resume-skill-group">
+              <div class="resume-skill-group__label">Tools</div>
+              <div class="resume-skill-tags">
+                <span class="resume-skill-tag">Figma</span>
+                <span class="resume-skill-tag">FigJam</span>
+                <span class="resume-skill-tag">Miro</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="resume-section-title">Certifications</div>
+          <div>
+            <div class="resume-cert">
+              <div class="resume-cert__title">Create High-Fidelity Designs and Prototypes in Figma</div>
+              <div class="resume-cert__org">Google</div>
+            </div>
+            <div class="resume-cert">
+              <div class="resume-cert__title">Conduct UX Research and Test Early Concepts</div>
+              <div class="resume-cert__org">Google</div>
+            </div>
+            <div class="resume-cert">
+              <div class="resume-cert__title">Build Wireframes and Low-Fidelity Prototypes</div>
+              <div class="resume-cert__org">Google</div>
+            </div>
+            <div class="resume-cert">
+              <div class="resume-cert__title">Graphic Design Foundations: Ideas, Concepts, and Form</div>
+              <div class="resume-cert__org">LinkedIn Learning</div>
+            </div>
+          </div>
+
+          <div class="resume-section-title" style="margin-top:var(--space-7)">Contact</div>
+          <div style="display:flex;flex-direction:column;gap:var(--space-3)">
+            <div style="font-family:var(--font-mono);font-size:12px;color:var(--text-secondary)">+(484)-529-7877</div>
+            <div style="font-family:var(--font-mono);font-size:12px;color:var(--text-secondary)">Stevenramos86012@gmail.com</div>
+            <div style="font-family:var(--font-mono);font-size:12px;color:var(--text-secondary)">Miami, FL</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer" style="margin-top:var(--space-9)">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <div class="footer__name">STEVEN RAMOS</div>
+        <div class="footer__title-text">UX / Product Designer</div>
+      </div>
+      <ul class="footer__nav">
+        <li><a onclick="showPage('home'); scrollToSection('work')" href="#">Work</a></li>
+        <li><a onclick="showPage('about')" href="#">About</a></li>
+        <li><a onclick="showPage('home'); scrollToSection('contact')" href="#">Contact</a></li>
+      </ul>
+      <div class="footer__links">
+        <a href="mailto:Stevenramos86012@gmail.com" class="footer__link">Email</a>
+        <a href="https://linkedin.com/in/stevenramos" target="_blank" class="footer__link">LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span class="footer__copy">© 2024 Steven Ramos</span>
+      <span class="footer__copy">Miami, FL</span>
+    </div>
+  </footer>
+
+</div><!-- /page-resume -->
+
+<!-- ============================================
+     JAVASCRIPT
+     ============================================ -->
+<script>
+// ============================================
+// PAGE NAVIGATION
+// ============================================
+function showPage(pageId) {
+  // Hide all pages
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  
+  // Show target page
+  const target = document.getElementById('page-' + pageId);
+  if (target) {
+    target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Trigger reveal animations for new page
+    setTimeout(initReveal, 100);
+  }
+}
+
+function scrollToSection(id) {
+  setTimeout(() => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, 150);
+}
+
+// ============================================
+// NAV SCROLL STATE
+// ============================================
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('main-nav');
+  if (window.scrollY > 20) {
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+});
+
+// ============================================
+// MOBILE MENU
+// ============================================
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobile-menu');
+  menu.classList.toggle('open');
+}
+
+// ============================================
+// SCROLL REVEAL
+// ============================================
+function initReveal() {
+  const reveals = document.querySelectorAll('.page.active .reveal:not(.visible)');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  reveals.forEach(el => observer.observe(el));
+}
+
+// Prevent default on all href="#" links
+document.addEventListener('click', (e) => {
+  if (e.target.tagName === 'A' && e.target.getAttribute('href') === '#') {
+    e.preventDefault();
+  }
+});
+
+// Init on load
+document.addEventListener('DOMContentLoaded', () => {
+  initReveal();
+  // Trigger nav scroll check
+  window.dispatchEvent(new Event('scroll'));
+});
+
+// Also init after a slight delay to catch any late-rendered elements
+setTimeout(initReveal, 500);
+</script>
+
+</body>
+</html>
